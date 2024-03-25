@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name" translatable="false">Clock</string>
+    <string name="times">Times</string>
+    <string name="setting">Setting</string>
+    <string name="add">Add</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="refresh">Refresh Rate</string>
+    <string name="min">min</string>
+    <string name="no_data">No Data</string>
+    <string name="sort">Sort</string>
+    <string name="asc_sort">ASC</string>
+    <string name="desc_sort">DESC</string>
+    <string name="language" translatable="false">Language:</string>
+    <string name="language_category">EN</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/timeFragment">
+
+    <action
+        android:id="@+id/action_to_timeFragment"
+        app:destination="@+id/timeFragment"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_to_settingFragment"
+        app:destination="@+id/settingFragment"
+        app:popUpToInclusive="true" />
+
+    <fragment
+        android:id="@+id/timeFragment"
+        android:name="com.example.clock.TimeFragment" />
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.clock.SettingFragment" />
+
+</navigation>
