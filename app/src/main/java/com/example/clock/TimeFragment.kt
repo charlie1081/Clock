@@ -12,7 +12,6 @@ import com.example.clock.dialog.ListDialog
 import com.example.clock.extension.getNavGraphViewModel
 import com.example.clock.viewholder.StringItemViewHolder
 import com.example.clock.viewmodel.TimeFragmentViewModel
-import java.util.Locale
 
 class TimeFragment : Fragment() {
     private var _vb: TimeFragmentBinding? = null
@@ -22,9 +21,22 @@ class TimeFragment : Fragment() {
 
     protected var navController: NavController? = null
 
+    private val dialog by lazy {
+        context?.let { context ->
+            ListDialog(context, object : StringItemViewHolder.OnItemClickListener {
+                override fun onItemClick(text: String) {
+                    //call vm to change language
+                }
+            }).apply {
+                setList(listOf("en", "zh-TW"))
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vm = getNavGraphViewModel(R.id.main_nav) { TimeFragmentViewModel(activity?.application as App) }
+        vm =
+            getNavGraphViewModel(R.id.main_nav) { TimeFragmentViewModel(activity?.application as App) }
     }
 
     override fun onCreateView(
@@ -56,12 +68,10 @@ class TimeFragment : Fragment() {
     }
 
     private fun openLanDialog() {
-        context?.let { context ->
-            ListDialog(context, listOf("en", "zh-TW"), object : StringItemViewHolder.OnItemClickListener{
-                override fun onItemClick(text: String) {
-                    //call vm to change language
-                }
-            }).show()
+        dialog?.run {
+            if (!isShowing) {
+                dialog?.show()
+            }
         }
     }
 

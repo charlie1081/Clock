@@ -9,7 +9,7 @@ import com.example.clock.adapter.StringAdapter
 import com.example.clock.databinding.StringListBinding
 import com.example.clock.viewholder.StringItemViewHolder
 
-class ListDialog(context: Context, private val list: List<String>, private val listener: StringItemViewHolder.OnItemClickListener) : Dialog(context) {
+class ListDialog(context: Context, private val listener: StringItemViewHolder.OnItemClickListener) : Dialog(context) {
     private val vb by lazy {
         StringListBinding.inflate(LayoutInflater.from(context))
     }
@@ -23,9 +23,12 @@ class ListDialog(context: Context, private val list: List<String>, private val l
         vb.rvList.apply {
             adapter = stringAdapter
             layoutManager = LinearLayoutManager(context)
-            stringAdapter.submitList(list)
         }
         window?.decorView?.viewTreeObserver?.addOnGlobalLayoutListener { adjustDialog(context) }
+    }
+
+    fun setList(list: List<String>) {
+        stringAdapter.submitList(list)
     }
 
     private fun adjustDialog(context: Context) {

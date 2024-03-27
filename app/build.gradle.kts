@@ -55,6 +55,8 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
     //log
     implementation("com.jakewharton.timber:timber:$timberVersion")
+    //gson
+    implementation("com.google.code.gson:gson:2.10.1")
 
     /**
      * MMKV
