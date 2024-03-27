@@ -67,6 +67,7 @@ class SettingFragment : Fragment() {
         vb.rvList.apply {
             adapter = checkboxAdapter
             layoutManager = LinearLayoutManager(context)
+            checkboxAdapter.submitList(vm.getAvailableTimeZonesFromPref())
         }
     }
 
@@ -84,15 +85,15 @@ class SettingFragment : Fragment() {
 
     private fun changeToDisplayMode() {
         val currentList = getAdapterCloneList()
+        val newList = arrayListOf<CheckboxItem>()
         currentList.forEach {
-            if (it.isChecked) {
-                currentList.remove(it)
-            } else {
-                it.mode = Mode.Display
+            if (!it.isChecked) {
+                newList.add(CheckboxItem(it.timeZone))
             }
         }
-        checkboxAdapter.submitList(currentList)
+        checkboxAdapter.submitList(newList)
         changeModeUI(Mode.Display)
+        vm.saveTimezones(newList)
     }
 
     private fun changeToEditMode() {
@@ -102,6 +103,7 @@ class SettingFragment : Fragment() {
         }
         checkboxAdapter.submitList(currentList)
         changeModeUI(Mode.Edit)
+        vm.saveTimezones(currentList)
     }
 
     private fun changeModeUI(mode: Mode) {
@@ -144,6 +146,7 @@ class SettingFragment : Fragment() {
                 checkboxAdapter.submitList(currentList)
             }
         }
+        vm.saveTimezones(currentList)
     }
 
     private fun showToast() {

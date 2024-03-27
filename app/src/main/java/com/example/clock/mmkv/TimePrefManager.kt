@@ -16,14 +16,8 @@ object TimePrefManager : MmkvManager() {
         get() = getPreference(KEY_LANGUAGE, "en") as String
         set(value) = updatePreference(KEY_LANGUAGE, value)
 
-    val timeZones: ArrayList<String>
-        get() {
-            val timezoneString = getPreference(KEY_TIME_ZONES, "") as String
-            Timber.d("timezoneString $timezoneString")
-            return Gson().fromJson(timezoneString, ArrayList<String>().javaClass) ?: arrayListOf()
-        }
+    var timeZones: String
+        get() = getPreference(KEY_TIME_ZONES, "") as String
+        set(value) = updatePreference(KEY_TIME_ZONES, value)
 
-    fun setTimeZones(timeZone: String) {
-        timeZones.add(timeZone)
-    }
 }
