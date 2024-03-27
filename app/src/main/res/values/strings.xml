@@ -13,4 +13,6 @@
     <string name="desc_sort">DESC</string>
     <string name="language" translatable="false">Language:</string>
     <string name="language_category">EN</string>
+    <string name="divider" translatable="false">/</string>
+    <string name="sort_divider" translatable="false">:</string>
 </resources>

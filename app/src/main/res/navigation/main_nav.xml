@@ -5,12 +5,12 @@
     app:startDestination="@id/timeFragment">
 
     <action
-        android:id="@+id/action_to_timeFragment"
+        android:id="@+id/actionToTimeFragment"
         app:destination="@+id/timeFragment"
         app:popUpToInclusive="true" />
 
     <action
-        android:id="@+id/action_to_settingFragment"
+        android:id="@+id/actionToSettingFragment"
         app:destination="@+id/settingFragment"
         app:popUpToInclusive="true" />
 

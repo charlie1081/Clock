@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/time"
         android:icon="@drawable/baseline_access_time_24"
         android:title="Time"/>
     <item
+        android:id="@+id/setting"
         android:icon="@drawable/baseline_brightness_low_24"
         android:title="Setting"/>
 </menu>

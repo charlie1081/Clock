@@ -5,11 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.example.clock.databinding.TimeFragmentBinding
+import com.example.clock.dialog.ListDialog
+import com.example.clock.extension.getNavGraphViewModel
+import com.example.clock.viewholder.StringItemViewHolder
+import com.example.clock.viewmodel.TimeFragmentViewModel
+import java.util.Locale
 
-class TimeFragment: Fragment() {
+class TimeFragment : Fragment() {
     private var _vb: TimeFragmentBinding? = null
-    private val vb get() =  _vb!!
+    private val vb get() = _vb!!
+
+    private lateinit var vm: TimeFragmentViewModel
+
+    protected var navController: NavController? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        vm = getNavGraphViewModel(R.id.main_nav) { TimeFragmentViewModel(activity?.application as App) }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,6 +34,35 @@ class TimeFragment: Fragment() {
     ): View {
         _vb = TimeFragmentBinding.inflate(inflater, container, false)
         return vb.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        setListener()
+        navController = findNavController()
+    }
+
+    private fun initView() {
+        vb.tvSortStyle.text = vm.getSortType()
+    }
+
+    private fun setListener() {
+        vb.tvLanCate.setOnClickListener { tvLanCateOnClick() }
+    }
+
+    private fun tvLanCateOnClick() {
+        openLanDialog()
+    }
+
+    private fun openLanDialog() {
+        context?.let { context ->
+            ListDialog(context, listOf("en", "zh-TW"), object : StringItemViewHolder.OnItemClickListener{
+                override fun onItemClick(text: String) {
+                    //call vm to change language
+                }
+            }).show()
+        }
     }
 
     override fun onDestroyView() {
