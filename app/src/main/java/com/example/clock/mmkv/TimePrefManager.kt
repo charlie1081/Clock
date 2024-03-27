@@ -20,4 +20,12 @@ object TimePrefManager : MmkvManager() {
         get() = getPreference(KEY_TIME_ZONES, "") as String
         set(value) = updatePreference(KEY_TIME_ZONES, value)
 
+    fun getTimezoneArray(): ArrayList<String> {
+        return ArrayList(stringConvertToList(timeZones))
+    }
+
+    private fun stringConvertToList(arrayString: String): List<String> {
+        return arrayString.replace("[", "").replace("]", "").split(",")
+    }
+
 }

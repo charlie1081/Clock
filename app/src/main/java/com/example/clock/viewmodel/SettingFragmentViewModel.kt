@@ -44,15 +44,11 @@ class SettingFragmentViewModel(app: Application) : AndroidViewModel(app) {
 
     fun getAvailableTimeZonesFromPref(): ArrayList<CheckboxItem> {
         Timber.d("TimePrefManager.timeZones ${TimePrefManager.timeZones}")
-        val timezoneList = stringConvertToList(TimePrefManager.timeZones)
+        val timezoneList = TimePrefManager.getTimezoneArray()
         val result = arrayListOf<CheckboxItem>()
         timezoneList.forEach {
             result.add(CheckboxItem(it))
         }
         return result
-    }
-
-    private fun stringConvertToList(arrayString: String): List<String> {
-        return arrayString.replace("[", "").replace("]", "").split(",")
     }
 }
